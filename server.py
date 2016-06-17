@@ -16,4 +16,16 @@ def socket_create():
 
 # Bind socket to port and wait for client
 def socket_bind():
+    try:
+        global host
+        global port
+        global s
+        print("Binding socket to port : " + str(port))
+        s.bind(host, port)
+        s.listen(5)
+    except socket.error as msg:
+        print("Socket binding error : " + str(msg))
+        time.sleep()
+        socket_bind()
+
 
