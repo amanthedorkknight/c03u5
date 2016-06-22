@@ -122,6 +122,34 @@ def send_target_commands(conn):
             break
 
 
+# Create worker threads
+def create_workers():
+    for _ in range(NUMBER_OF_THREADS):
+        t = threading.Thread(target=work)
+        t.daemon = True
+        t.start()
+
+
+# Create jobs
+def create_jobs():
+    for x in JOB_NUMBER:
+        queue.put(x)
+    queue.join()
+
+
+# Do jobs
+def work():
+    while True:
+        x = queue.get()
+        if x == 1:
+            socket_create()
+            socket_bind()
+            accept_connections()
+        if x == 2:
+            start_c03u5()
+        queue.task_done()
+
+
 # Sends commands to client
 def send_commands(conn):
     while True:
@@ -137,9 +165,8 @@ def send_commands(conn):
 
 
 def main():
-    socket_create()
-    socket_bind()
-    socket_accept()
+    create_workers()
+    create_jobs()
 
 main()
 
