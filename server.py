@@ -78,6 +78,19 @@ def start_c03u5():
 
 
 # Display all current connections
+def list_connections():
+    results = ''
+    for i, conn in enumerate(all_connections):
+        try:
+            conn.send(str.encode(' '))
+            conn.recv(20480)
+        except:
+            del all_connections[i]
+            del all_addresses[i]
+            continue
+        results += str(i) + ' ' + str(all_addresses[i][0]) + '\n'
+    print('------------Clients------------' + '\n' + results)
+
 
 # Sends commands to client
 def send_commands(conn):
