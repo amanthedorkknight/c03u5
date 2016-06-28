@@ -26,11 +26,11 @@ You will then enter an interactive prompt where you are able to view connected c
 
 To list all current connections:
 
-`turtle> list`
+`c03u5> list`
 
 To select a target from the list of clients:
 
-`turtle> select 3`
+`c03u5> select 3`
 
 
 ### Client
