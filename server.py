@@ -111,12 +111,12 @@ def send_target_commands(conn):
     while True:
         try:
             cmd = input()
+            if cmd == 'quit':
+                break
             if len(str.encode(cmd)) > 0:
                 conn.send(str.encode(cmd))
                 client_response = str(conn.recv(20480), "utf-8")
                 print(client_response, end='')
-            if cmd == 'quit':
-                break
         except:
             print("Connection lost")
             break
